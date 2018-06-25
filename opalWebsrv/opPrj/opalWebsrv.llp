@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<Project>
+    <General>
+        <att_name>opalWebsrv</att_name>
+        <att_description>Example project for using the web server</att_description>
+        <att_autosave>ON</att_autosave>
+        <att_filename>E:\Boudinet\predis-temps-reel\opalWebsrv\opPrj\opalWebsrv.llp</att_filename>
+    </General>
+    <Models>
+        <Model>
+            <Path>
+                <Relative>models\opalWebSrvExp.mdl</Relative>
+                <Absolute>E:\Boudinet\predis-temps-reel\opalWebsrv\opPrj\models\opalWebSrvExp.mdl</Absolute>
+                <UNC>\\OPAL-RT4\Boudinet\predis-temps-reel\opalWebsrv\opPrj\models\opalWebSrvExp.mdl</UNC>
+            </Path>
+        </Model>
+    </Models>
+</Project>
