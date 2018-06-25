@@ -1,6 +1,3 @@
-# branch linear
-
-
 import threading
 
 import time
