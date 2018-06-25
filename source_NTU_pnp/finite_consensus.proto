@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+service Agent{
+  //start the admm algorithm on the agent
+  rpc start_consensus(EmptyRequest) returns (CommReply) {}
+
+  //start the admm algorithm on the agent
+  rpc remote_shutdown(EmptyRequest) returns (CommReply) {}
+
+  //sets value in the finite consensus algorithm
+  rpc set_values(SetValues) returns (CommReply) {}
+
+  //sets parameters
+  rpc set_parameters(SetParas) returns (CommReply) {}
+
+  //inform new agent
+  rpc inform_new_agent(InformAdd) returns(CommReply) {}
+
+  //inform remove agent
+  rpc inform_remove_agent(InformRemove) returns(CommReply) {}
+}
+
+enum OperationStatus {
+    SUCCESS = 0;
+    FAILED = 1;
+  }
+message CommReply {
+  OperationStatus status = 1;
+  string message = 2;
+}
+
+//empty message to be used for methods with no parameters
+message EmptyRequest {}
+
+message SetValues {
+  float f = 1;
+  float P = 2;
+  float SOC = 3;
+  float V = 4;
+  float Q = 5;
+  uint32 agent_id = 6;  //the id of the agent sending the beta value
+  uint32 state = 7;
+}
+
+message InformAdd {
+  uint32 agent_id = 1;
+  string ip = 2;
+  uint32 port = 3;
+}
+
+message InformRemove {
+  uint32 agent_id = 1;
+}
+
+message SetParas {
+  float k1 = 1;
+  float k2 = 2;
+  float k3 = 3;
+  float alpha = 4;
+  float beta = 5;
+  float gama = 6;
+  float kw = 7;
+  float kv = 8;
+}

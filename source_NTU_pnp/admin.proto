@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+service admin{
+  //method that the agent calls when it gets online
+  rpc agent_online(AgentRequest) returns (CommReply) {}
+
+  //method that the agent calls when it gets offline
+  rpc agent_offline(AgentRequest) returns (CommReply) {}
+
+  //method that the agent calls when it finishes a consensus step
+  //rpc agent_results(Results) returns (CommReply) {}
+
+  //method that the agent calls periodically to send its state to the administrator
+  //rpc agent_measurements(Measurements) returns (CommReply) {}
+
+  rpc agent_general_use_message(GenericMessage) returns (CommReply) {}
+}
+
+enum OperationStatus {
+    SUCCESS = 0;
+    FAILED = 1;
+  }
+message CommReply {
+  OperationStatus status = 1;
+  string message = 2;
+}
+
+//empty message to be used for methods with no parameters
+message EmptyRequest {}
+
+message AgentRequest {
+  uint32 agent_id = 1;  //the id of the agent
+}
+
+//message Results {
+//  uint32 agent_id = 1;  //the id of the agent
+//  float  avg_consensus_time = 2;  //average time spent in the consensus
+//  float avg_rpc_time = 3;  //average time spent on one RPC call
+//  float Uw = 4;  //Uw sent to the opal
+//  float Ue = 5;  //Ue sent to the opal
+//  float Uq = 6;  //Uq sent to the opal
+//}
+
+//message Measurements {
+//  uint32 agent_id = 1;  //the id of the agent
+//  float  avg_opal_time = 2;  //average time spent in the communication with opal
+//  float f_meas = 3;  //the frequency measurement
+//  float P_meas = 4;  //the active power measurement
+//  float SOC_meas = 5;  //SOC measurement
+//  float V_meas = 6;  //the voltage measurement
+//  float Q_meas = 7;  //the reactive power measurement
+//}
+
+message GenericMessage{
+    uint32 agent_id = 1;  //the id of the agent
+    string text = 2;  //generic text message
+}
